@@ -1,16 +1,11 @@
 package ru.kalashnikova.homework.homework4;
 
-import junit.framework.TestCase;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TriangleTest {
-    @Rule
-    public ExpectedException exceptionRule = ExpectedException.none();
-
     @Test
     public void testCalculateArea() {
         double expectedArea = 36.98;
@@ -20,16 +15,20 @@ public class TriangleTest {
 
     @Test
     public void testCalculateAreaExceptionSideLessZero() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        exceptionRule.expectMessage("Сторона треугольника не может быть меньше или равной 0");
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
+            Triangle.calculateArea(8, 10, -15);
+        });
 
-        Triangle.calculateArea(8, 10, -15);
+        assertEquals("Сторона треугольника не может быть меньше или равной 0", ex.getMessage());
     }
 
     @Test
     public void testCalculateAreaExceptionLargeSide() {
-        exceptionRule.expect(IllegalArgumentException.class);
-        exceptionRule.expectMessage("Одна сторона треугольника больше суммы двух других сторон");
-        Triangle.calculateArea(8, 10, 19);
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> {
+            Triangle.calculateArea(8, 10, 19);
+        });
+
+        assertEquals("Одна сторона треугольника больше суммы двух других сторон", ex.getMessage());
     }
 }
