@@ -1,5 +1,6 @@
 package ru.kalashnikova.homework.homework6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ public class FavoritePage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Проверка отсутсвия в избранном товаров")
     public MainHeader checkFavoriteIsEmpty(){
         assertEquals("Сейчас у вас ничего нет в «Избранном»",
                 webDriver.findElement(By.xpath("//div[@class='text-center margin-top-60 margin-bottom-55']/h2")).getText());
@@ -19,6 +21,7 @@ public class FavoritePage extends BasePage {
         return new MainHeader(webDriver);
     }
 
+    @Step("Проверка наличия товара {productName} в избранном")
     public FavoritePage checkProductInFavorite(String productName) {
         WebElement product = getProduct();
 
@@ -28,6 +31,7 @@ public class FavoritePage extends BasePage {
         return this;
     }
 
+    @Step("Очистка избранного")
     public FavoritePage clearFavorite() {
         getProduct().findElement(By.xpath(".//button[@class='btn-favorite btn-favorite_active']")).click();
         return this;

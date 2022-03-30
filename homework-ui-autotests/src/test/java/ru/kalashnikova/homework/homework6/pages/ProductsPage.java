@@ -1,5 +1,6 @@
 package ru.kalashnikova.homework.homework6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +13,8 @@ public class ProductsPage extends BasePage {
         super(webDriver);
     }
 
-    public ProductPage openProductPage() throws InterruptedException {
+    @Step("Открытие страницы продукта")
+    public ProductPage openProductPage() {
         webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement product = webDriver.findElement(By.xpath("//ul[@class='products lines-space-30 desktop-columns-3 tablet-columns-3 mobile-columns-3 ts-columns-2']"))
                 .findElements(By.xpath("//li[@class='product-item product-item_sizes ']"))

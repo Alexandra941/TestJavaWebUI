@@ -1,5 +1,6 @@
 package ru.kalashnikova.homework.homework6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ public class BasketPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Проверка отсутсвия в корзине товаров")
     public MainHeader checkBasketIsEmpty(){
         assertEquals("Корзина пуста",
                 webDriver.findElement(By.xpath("//div[@class='container-fluid']/div/h2")).getText());
@@ -19,6 +21,7 @@ public class BasketPage extends BasePage {
         return new MainHeader(webDriver);
     }
 
+    @Step("Проверка наличия товара {productName} в корзине")
     public BasketPage checkProductInBasket(String productName) {
         WebElement product = getProduct();
 
@@ -28,6 +31,7 @@ public class BasketPage extends BasePage {
         return this;
     }
 
+    @Step("Очистка корзины")
     public BasketPage clearBasket() {
         getProduct().findElement(By.xpath("//td[@class='product-remove']/a")).click();
         return this;

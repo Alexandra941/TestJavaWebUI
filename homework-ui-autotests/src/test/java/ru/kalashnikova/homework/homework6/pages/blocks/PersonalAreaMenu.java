@@ -1,5 +1,6 @@
 package ru.kalashnikova.homework.homework6.pages.blocks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +14,7 @@ public class PersonalAreaMenu extends BaseView {
         super(webDriver);
     }
 
+    @Step("Переход на страницу с информацией о пользователе")
     public ProfilePage toToProfilePage() {
         webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         new Actions(webDriver)
